@@ -1,0 +1,7 @@
+# --- Common specific parameters ------------------------------------------------------------------------------
+inputFileName        = test_data_01.dat;        # Input DAT file
+solutionFile         = solutions/example.sol;   # Output DAT file (solution)
+solver               = GRASP;                  # Supported solvers: Greedy / GRASP
+local_search         = True;
+maxExecTime          = 60;                      # Maximum execution time in seconds
+verbose              = True;                    # Verbose mode?
