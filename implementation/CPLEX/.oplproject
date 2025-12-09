@@ -19,7 +19,7 @@
             <ref name="progetto amm.mod" type="model">
 			</ref>
             			
-            <ref name="batman_N10_K3.dat" type="data">
+            <ref name="batman_N90_K50.dat" type="data">
 			</ref>
             		
         </config>
@@ -40,6 +40,13 @@
 			</ref>
             			
             <ref name="batman_N20_K3.dat" type="data">
+			</ref>
+            		
+        </config>
+        		
+        <config default="false" name="main_configuration" category="opl">
+            			
+            <ref name="Main.mod" type="model">
 			</ref>
             		
         </config>
