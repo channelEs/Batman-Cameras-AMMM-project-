@@ -20,16 +20,16 @@ main {
   datFiles[6] = "batman_N30_K10.dat";
   datFiles[7] = "batman_N40_K20.dat";
   datFiles[8] = "batman_N40_K25.dat";
-  */
   datFiles[0] = "batman_N45_K20.dat";
   datFiles[1] = "batman_N50_K30.dat";
-  datFiles[2] = "batman_N60_K30.dat";
-  datFiles[3] = "batman_N60_K40.dat";
-  datFiles[4] = "batman_N70_K50.dat";
-  datFiles[5] = "batman_N90_K50.dat";
-  datFiles[6] = "batman_N130_K5.dat";
-  datFiles[7] = "batman_N260_K5.dat";
-  datFiles[8] = "batman_N300_K5.dat";
+  */
+  datFiles[0] = "batman_N60_K30.dat";
+  datFiles[1] = "batman_N60_K40.dat";
+  datFiles[2] = "batman_N70_K50.dat";
+  datFiles[3] = "batman_N90_K50.dat";
+  datFiles[4] = "batman_N130_K5.dat";
+  datFiles[5] = "batman_N260_K5.dat";
+  datFiles[6] = "batman_N300_K5.dat";
 
   // Add more lines here as needed: datFiles[2] = "..."
   // --- CHANGED SECTION END ---

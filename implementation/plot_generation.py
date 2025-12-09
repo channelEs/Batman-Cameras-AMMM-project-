@@ -1,5 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 def GRASP_alpha_plot():
     # 1. Load Data
@@ -47,3 +48,55 @@ def general_result():
     plt.xlabel('Algorithm')
     plt.show()
 
+def global_heuristics_results():
+    # 1. Load Data
+    df_greedy = pd.read_csv('All_Executions_GREEDY.csv', delimiter=';')
+    df_ls = pd.read_csv('All_Executions_LocalSearch.csv', delimiter=';')
+    df_grasp = pd.read_csv('All_Executions_GRASP.csv', delimiter=';')
+
+    # 2. Label Algorithms Explicitly
+    df_greedy['Algorithm'] = 'Greedy'
+    df_ls['Algorithm'] = 'Local Search'
+    df_grasp['Algorithm'] = 'GRASP'
+
+    # 3. Combine
+    df_all = pd.concat([df_greedy, df_ls, df_grasp], ignore_index=True)
+
+    # 4. Clean Instance Names for X-Axis (Remove 'batman_' and '.dat')
+    df_all['Instance'] = df_all['in_filename'].str.replace('batman_', '').str.replace('.dat', '')
+
+    # 5. Plot
+    plt.figure(figsize=(12, 6))
+    sns.set_style("whitegrid")
+
+    # Create Bar Chart
+    ax = sns.barplot(
+        data=df_all, 
+        x='Instance', 
+        y='total_cost', 
+        hue='Algorithm',
+        palette='viridis',
+        edgecolor='black' # Adds a border to bars for clarity
+    )
+
+    # Add Values on Top of Bars
+    for p in ax.patches:
+        if p.get_height() > 0:
+            ax.annotate(f'{int(p.get_height())}', 
+                    (p.get_x() + p.get_width() / 2., p.get_height()), 
+                    ha = 'center', va = 'center', 
+                    xytext = (0, 8), 
+                    textcoords = 'offset points',
+                    fontsize=9, fontweight='bold')
+
+    plt.title('Comparison of Solution Costs by Solver', fontsize=15)
+    plt.ylabel('Total Cost (€)', fontsize=12)
+    plt.xlabel('Instance', fontsize=12)
+    plt.xticks(rotation=45)
+    plt.legend(title='Solver', bbox_to_anchor=(1.02, 1), loc='upper left')
+
+    plt.tight_layout()
+    plt.savefig('solvers_comparison_plot.png', dpi=300)
+    plt.show()
+
+global_heuristics_results()

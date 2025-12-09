@@ -1,0 +1,2 @@
+in_filename;N;K;total_cost;time;solver;num_cameras;alpha;Configuration_Details
+batman_N10_K2.dat;10;2;500;0.02882528305053711;Greedy;6;0.4;Loc10:M1:S[0110110] | Loc10:M1:S[1001101] | Loc5:M1:S[1011011] | Loc2:M1:S[1001101] | Loc8:M1:S[1001101] | Loc9:M1:S[0110110]
