@@ -4,7 +4,7 @@ from batman_utils import BatmanUtils
 from LocalSearch import LocalSearch
 
 class GRASPSolver:
-    def __init__(self, N, cam_models, distance_matrix, local_search: LocalSearch):
+    def __init__(self, instance: Instance, global_utils: BatmanUtils, local_search: LocalSearch):
         if local_search is None:
             raise ValueError('local_search NOT SETTED in config')
         self.N = N

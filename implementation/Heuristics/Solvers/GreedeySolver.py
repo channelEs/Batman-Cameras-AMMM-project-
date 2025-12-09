@@ -62,7 +62,6 @@ class GreedySolver(_Solver):
                                     'cam_model': cam_model,
                                     'schedule': schedule,
                                     'cost': cost,
-                                    'covered_count': new_covered_count,
                                     'spatial': spatial_neighbors
                                 }
             
@@ -100,5 +99,5 @@ class GreedySolver(_Solver):
     def solve(self):
         sol = self.greedy_solver()
         if self.local_search is not None:
-            sol = self.local_search.local_search(initial_solution=sol, cam_models=self.cam_models)
+            sol = self.local_search.local_search(initial_solution=sol)
         return sol, sum(c.total_cost for c in sol)

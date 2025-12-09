@@ -4,7 +4,7 @@ from datParser import DATParser
 from problem.instance import Instance
 from batman_utils import BatmanUtils
 from Solvers.GreedeySolver import GreedySolver
-from Solver.LocalSearch import LocalSearch
+from Solvers.LocalSearch import LocalSearch
 
 def prepare_data_set(data_set):
     data_set.P = list(map(int,data_set.P))
@@ -36,7 +36,8 @@ if __name__ == "__main__":
     input_data = DATParser.parse(config_file)
     print(input_data.__dict__)
 
-    data_file = os.path.join("dat_files", input_data.inputFileName)
+    print(f'EXECUTING instance filename: {input_data.inputFileName}')
+    data_file = os.path.join(input_data.inputFileName)
     data_set = DATParser.parse(data_file)
     print(data_set.__dict__)
     instance = Instance(config=input_data, i_input_data=data_set)
@@ -50,7 +51,7 @@ if __name__ == "__main__":
     solver = None
     local_search = None
     if input_data.local_search:
-        local_search = LocalSearch(N=data_set.N, distance_matrix=data_set.M)
+        local_search = LocalSearch(global_utils=batman_utils, instance=instance)
 
     if input_data.solver == "Greedy":
         solver = GreedySolver(global_utils=batman_utils, instance=instance, local_search=local_search)
