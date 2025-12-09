@@ -92,7 +92,7 @@ class GreedySolver(_Solver):
                     if c_schedule[d] == 1:
                         uncovered_matrix[covered_c][d] = 0
 
-            print(f"Selected: Crossing {best_candidate['crossing'] + 1}, Camera Model {best_candidate['cam_model']['id']}, ")
+            print(f"Selected: Crossing {best_candidate['crossing'] + 1}, Camera Model {best_candidate['cam_model'].id}, ")
 
         # total_cost = sum(c['Cost'] for c in solution_cameras)
         return solution_cameras #, total_cost
@@ -101,4 +101,4 @@ class GreedySolver(_Solver):
         sol = self.greedy_solver()
         if self.local_search is not None:
             sol = self.local_search.local_search(initial_solution=sol, cam_models=self.cam_models)
-        return sol, sum(c['Cost'] for c in sol)
+        return sol, sum(c.total_cost for c in sol)

@@ -15,7 +15,7 @@ main {
 	var cplex = new IloCplex();
 	var model = new IloOplModel(def, cplex);
 	
-	var data = new IloOplDataSource("batman_N10_K3.dat"); // load instance
+	var data = new IloOplDataSource("batman_N40_K20.dat"); // load instance
 	model.addDataSource(data);
 	model.generate();
 	

@@ -1,10 +1,11 @@
 import numpy as np
 from batman_utils import BatmanUtils
+from solver import _Solver
 
-class LocalSearch():
-    def __init__(self, N, distance_matrix):
-        self.N = N
-        self.M = np.array(distance_matrix)
+class LocalSearch(_Solver):
+    def __init__(self, instance: Instance, global_utils: BatmanUtils):
+        self.batman_utils = global_utils
+        self.instance = instance
 
     def local_search(self, initial_solution, cam_models):
         current_solution = initial_solution

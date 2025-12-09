@@ -4,6 +4,7 @@ from datParser import DATParser
 from problem.instance import Instance
 from batman_utils import BatmanUtils
 from Solvers.GreedeySolver import GreedySolver
+from Solver.LocalSearch import LocalSearch
 
 def prepare_data_set(data_set):
     data_set.P = list(map(int,data_set.P))
@@ -48,8 +49,8 @@ if __name__ == "__main__":
     
     solver = None
     local_search = None
-    # if input_data.local_search:
-    #     local_search = LocalSearch(N=data_set.N, distance_matrix=data_set.M)
+    if input_data.local_search:
+        local_search = LocalSearch(N=data_set.N, distance_matrix=data_set.M)
 
     if input_data.solver == "Greedy":
         solver = GreedySolver(global_utils=batman_utils, instance=instance, local_search=local_search)
@@ -60,10 +61,10 @@ if __name__ == "__main__":
     sol, cost = solver.solve()
 
     for c in sol:
-        sched_str = "".join(['✓' if d==1 else '-' for d in c['Schedule']])
-        print(f"Crossing {c['Crossing']} (Model {c['Model_Cam']}): {sched_str} | Cost: {c['Cost']}")
+        sched_str = "".join(['✓' if d==1 else '-' for d in c.schedule])
+        print(f"Crossing {c.crossing_number} (Model {c.model_number}): {sched_str} | Cost: {c.total_cost}")
 
-    # # print("Final Solution:")
-    # # for s in sol:
-    # #     print(s)
-    # print(f"Total Cost: {cost}")
+    # print("Final Solution:")
+    # for s in sol:
+    #     print(s)
+    print(f"Total Cost: {cost}")
