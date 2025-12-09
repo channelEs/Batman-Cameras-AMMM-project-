@@ -1,7 +1,8 @@
 # --- Common specific parameters ------------------------------------------------------------------------------
-inputFileName        = ../DATA/examples/project.18.dat;        # Input DAT file
-solutionFile         = solutions/example.sol;   # Output DAT file (solution)
+inputFileName        = ../DATA/dat_files/batman_N40_K20.dat;        # Input DAT file
+solutionFile         = solutions/example.csv;   # Output CSV file (.csv)
 solver               = GRASP;                  # Supported solvers: Greedy / GRASP
 local_search         = True;
-maxExecTime          = 60;                      # Maximum execution time in seconds
+maxExecTime          = 360;                      # Maximum execution time in seconds
 verbose              = True;                    # Verbose mode?
+alpha                = 0.4;

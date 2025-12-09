@@ -7,14 +7,18 @@ from problem.camera import InputCamera, SolutionCamera
 from solver import _Solver
 
 class GRASPSolver(_Solver):
-    def __init__(self, instance: Instance, global_utils: BatmanUtils, local_search: LocalSearch):
+    def __init__(self, instance: Instance, global_utils: BatmanUtils, local_search: LocalSearch, alpha):
         if local_search is None:
             raise ValueError('local_search NOT SETTED in config')
+        if alpha is None:
+            raise ValueError('alpha NOT SETTED in config')
         self.instance = instance
         self.local_search = local_search
         self.batman_utils = global_utils
+        self.max_iterations = 70#max_iterations
+        self.alpha = alpha
 
-    def constructive_phase(self, alpha):
+    def constructive_phase(self):
         uncovered_matrix = [[1 for _ in range(7)] for _ in range(self.instance.num_crossings)]
         is_occupied = [False] * self.instance.num_crossings
         solution = []
@@ -60,7 +64,7 @@ class GRASPSolver(_Solver):
             min_ratio = min(c['ratio'] for c in all_candidates)
             max_ratio = max(c['ratio'] for c in all_candidates)
             
-            threshold = min_ratio + alpha * (max_ratio - min_ratio)
+            threshold = min_ratio + self.alpha * (max_ratio - min_ratio)
             rcl = [c for c in all_candidates if c['ratio'] <= threshold]
             
             selected = random.choice(rcl)
@@ -80,15 +84,15 @@ class GRASPSolver(_Solver):
                         
         return solution
 
-    def run_grasp(self, max_iterations=10, alpha=0.3):
+    def run_grasp(self):
         current_best_sol = None
         current_best_cost = 100000
         
-        print(f"Starting GRASP (Alpha={alpha}, Iterations={max_iterations})...")
+        print(f"Starting GRASP (Alpha={self.alpha}, Iterations={self.max_iterations})...")
         
-        for k in range(max_iterations):
+        for k in range(self.max_iterations):
             # for each iteration, try the solution and save the best one
-            sol = self.constructive_phase(alpha)
+            sol = self.constructive_phase()
             sol = self.local_search.local_search(initial_solution=sol)
             sol_cost = sum(c.total_cost for c in sol) 
             if current_best_cost > sol_cost:
@@ -99,7 +103,7 @@ class GRASPSolver(_Solver):
         return current_best_sol
     
     def solve(self):
-        sol = self.run_grasp(max_iterations=50, alpha=0.2)
+        sol = self.run_grasp()
         # if sol is not None:
 
         return sol, sum(c.total_cost for c in sol) 

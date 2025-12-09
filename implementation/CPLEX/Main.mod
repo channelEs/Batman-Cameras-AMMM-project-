@@ -10,6 +10,7 @@ main {
   var def = new IloOplModelDefinition(src);
 
   var datFiles = new Array();
+  /*
   datFiles[0] = "batman_N10_K2.dat";
   datFiles[1] = "batman_N10_K3.dat";
   datFiles[2] = "batman_N10_K6.dat";
@@ -19,15 +20,16 @@ main {
   datFiles[6] = "batman_N30_K10.dat";
   datFiles[7] = "batman_N40_K20.dat";
   datFiles[8] = "batman_N40_K25.dat";
-  datFiles[9] = "batman_N45_K20.dat";
-  datFiles[10] = "batman_N50_K30.dat";
-  datFiles[11] = "batman_N60_K30.dat";
-  datFiles[12] = "batman_N60_K40.dat";
-  datFiles[13] = "batman_N70_K50.dat";
-  datFiles[14] = "batman_N90_K50.dat";
-  datFiles[15] = "batman_N130_K5.dat";
-  datFiles[16] = "batman_N260_K5.dat";
-  datFiles[17] = "batman_N300_K5.dat";
+  */
+  datFiles[0] = "batman_N45_K20.dat";
+  datFiles[1] = "batman_N50_K30.dat";
+  datFiles[2] = "batman_N60_K30.dat";
+  datFiles[3] = "batman_N60_K40.dat";
+  datFiles[4] = "batman_N70_K50.dat";
+  datFiles[5] = "batman_N90_K50.dat";
+  datFiles[6] = "batman_N130_K5.dat";
+  datFiles[7] = "batman_N260_K5.dat";
+  datFiles[8] = "batman_N300_K5.dat";
 
   // Add more lines here as needed: datFiles[2] = "..."
   // --- CHANGED SECTION END ---
