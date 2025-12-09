@@ -1,37 +1,39 @@
 import numpy as np
 import random
 from batman_utils import BatmanUtils
-from LocalSearch import LocalSearch
+from Solvers.LocalSearch import LocalSearch
+from problem.instance import Instance
+from problem.camera import InputCamera, SolutionCamera
+from solver import _Solver
 
-class GRASPSolver:
+class GRASPSolver(_Solver):
     def __init__(self, instance: Instance, global_utils: BatmanUtils, local_search: LocalSearch):
         if local_search is None:
             raise ValueError('local_search NOT SETTED in config')
-        self.N = N
-        self.cam_models = cam_models
-        self.M = distance_matrix
+        self.instance = instance
         self.local_search = local_search
+        self.batman_utils = global_utils
 
     def constructive_phase(self, alpha):
-        uncovered_matrix = [[1 for _ in range(7)] for _ in range(self.N)]
-        is_occupied = [False] * self.N
+        uncovered_matrix = [[1 for _ in range(7)] for _ in range(self.instance.num_crossings)]
+        is_occupied = [False] * self.instance.num_crossings
         solution = []
         
         while BatmanUtils.get_remaining_count(uncovered_matrix) > 0:
             all_candidates = []
             
-            for i in range(self.N):
+            for i in range(self.instance.num_crossings):
                 if is_occupied[i]: 
                     continue
 
-                for model in self.cam_models:
-                    spatial = BatmanUtils.get_spatial_coverage(self.N, self.M, i, model['R'])
+                for model in self.instance.cam_models:
+                    spatial = self.batman_utils.get_spatial_coverage(i, model.range)
                     
                     for sched_int in range(128):
                         bin_str = f"{sched_int:07b}"
                         sched = [int(x) for x in bin_str]
                         
-                        if not BatmanUtils.is_valid_schedule(sched, model['A']): 
+                        if not self.batman_utils.is_valid_schedule(sched, model.autonomy): 
                             continue
                         
                         new_cov = 0
@@ -41,7 +43,7 @@ class GRASPSolver:
                                     new_cov += 1
                         
                         if new_cov > 0:
-                            cost = model['P'] + (sum(sched) * model['C'])
+                            cost = model.price + (sum(sched) * model.cost_power)
                             ratio = cost / new_cov
                             
                             cand = {
@@ -62,12 +64,12 @@ class GRASPSolver:
             rcl = [c for c in all_candidates if c['ratio'] <= threshold]
             
             selected = random.choice(rcl)
-            solution.append({
-                'Crossing': selected['loc'] + 1,
-                'Model_Cam': selected['model']['id'],
-                'Schedule': selected['sched'],
-                'Cost': selected['cost']
-            })
+            selected_cam = SolutionCamera(
+                i_crossing_number=selected['loc'] + 1,
+                i_model_number=selected['model'].id,
+                i_schedule=selected['sched'],
+                i_total_cost=selected['cost'])
+            solution.append(selected_cam)
             is_occupied[selected['loc']] = True
             
             # update uncovered!!
@@ -87,8 +89,8 @@ class GRASPSolver:
         for k in range(max_iterations):
             # for each iteration, try the solution and save the best one
             sol = self.constructive_phase(alpha)
-            sol = self.local_search.local_search(sol, self.cam_models)
-            sol_cost = sum(c['Cost'] for c in sol) 
+            sol = self.local_search.local_search(initial_solution=sol)
+            sol_cost = sum(c.total_cost for c in sol) 
             if current_best_cost > sol_cost:
                 current_best_sol = sol
                 current_best_cost = sol_cost
@@ -100,4 +102,4 @@ class GRASPSolver:
         sol = self.run_grasp(max_iterations=50, alpha=0.2)
         # if sol is not None:
 
-        return sol, sum(c['Cost'] for c in sol)
+        return sol, sum(c.total_cost for c in sol) 

@@ -1,0 +1,15 @@
+Type;Filename;N;K;Objective;Time(s)
+DATA;data_in/project.1.dat;4;2;80;23148.562
+DATA;data_in/project.2.dat;4;2;82;23148.734
+DATA;data_in/project.3.dat;4;2;120;23148.828
+DATA;data_in/project.4.dat;4;2;77;23148.859
+DATA;data_in/project.5.dat;4;2;65;23149.046
+DATA;data_in/project.6.dat;23;7;192;23150.171
+DATA;data_in/project.7.dat;8;2;197;23150.25
+DATA;data_in/project.11.dat;17;14;200;23151.937
+DATA;data_in/project.12.dat;16;12;206;23161.515
+DATA;data_in/project.13.dat;10;4;452;23166.062
+DATA;data_in/project.14.dat;12;7;214;23168
+DATA;data_in/project.15.dat;19;15;262;23183.796
+DATA;data_in/project.17.dat;11;14;159;23189.328
+DATA;data_in/project.18.dat;13;3;424;23197.562

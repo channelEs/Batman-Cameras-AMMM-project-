@@ -1,0 +1,52 @@
+--------------------------------------------------
+Solving instance: batman_N10_K3.dat
+Max load 321.78%
+DATA;batman_N10_K3.dat;10;3;321.78;15676.187
+Instance Time: 444ms
+--------------------------------------------------
+Solving instance: batman_N10_K6.dat
+Max load 173.98%
+DATA;batman_N10_K6.dat;10;6;173.98;15676.906
+Instance Time: 717ms
+--------------------------------------------------
+Solving instance: batman_N15_K10.dat
+Max load 207.36%
+DATA;batman_N15_K10.dat;15;10;207.36;15678.296
+Instance Time: 1397ms
+--------------------------------------------------
+Solving instance: batman_N20_K3.dat
+Max load 132.06%
+DATA;batman_N20_K3.dat;20;3;132.06;15679.234
+Instance Time: 932ms
+--------------------------------------------------
+Solving instance: batman_N30_K5.dat
+Max load 456.14%
+DATA;batman_N30_K5.dat;30;5;456.14;16279.718
+Instance Time: 601439ms
+--------------------------------------------------
+Solving instance: batman_N30_K10.dat
+Max load 166.28%
+DATA;batman_N30_K10.dat;30;10;166.28;16498.906
+Instance Time: 218575ms
+--------------------------------------------------
+Solving instance: batman_N40_K20.dat
+Max load 126.4%
+DATA;batman_N40_K20.dat;40;20;126.4;17103.812
+Instance Time: 621008ms
+--------------------------------------------------
+Solving instance: batman_N40_K25.dat
+Max load 215.04%
+DATA;batman_N40_K25.dat;40;25;215.04;17720.562
+Instance Time: 600340ms
+--------------------------------------------------
+Solving instance: batman_N60_K30.dat
+Max load 162.66%
+DATA;batman_N60_K30.dat;60;30;162.66;18321.218
+Instance Time: 600634ms
+--------------------------------------------------
+Solving instance: batman_N70_K50.dat
+Max load 112.08%
+DATA;batman_N70_K50.dat;70;50;112.08;18922.171
+Instance Time: 600983ms
+--------------------------------------------------
+Total Execution time: 3246469ms

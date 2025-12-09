@@ -6,40 +6,40 @@
         		
         <config default="true" name="Configurazione 1" category="opl">
             			
-            <ref name="progetto amm.mod" type="model">
+            <ref name="progetto amm.dat" type="data">
 			</ref>
             			
-            <ref name="progetto amm.dat" type="data">
+            <ref name="progetto_ammm.mod" type="model">
 			</ref>
             		
         </config>
         		
         <config default="false" name="n 10 k 3" category="opl">
             			
-            <ref name="progetto amm.mod" type="model">
+            <ref name="batman_N90_K50.dat" type="data">
 			</ref>
             			
-            <ref name="batman_N90_K50.dat" type="data">
+            <ref name="progetto_ammm.mod" type="model">
 			</ref>
             		
         </config>
         		
         <config default="false" name="10 2" category="opl">
             			
-            <ref name="progetto amm.mod" type="model">
+            <ref name="batman_N10_K2.dat" type="data">
 			</ref>
             			
-            <ref name="batman_N10_K2.dat" type="data">
+            <ref name="progetto_ammm.mod" type="model">
 			</ref>
             		
         </config>
         		
         <config default="false" name="20 3" category="opl">
             			
-            <ref name="progetto amm.mod" type="model">
+            <ref name="batman_N20_K3.dat" type="data">
 			</ref>
             			
-            <ref name="batman_N20_K3.dat" type="data">
+            <ref name="progetto_ammm.mod" type="model">
 			</ref>
             		
         </config>

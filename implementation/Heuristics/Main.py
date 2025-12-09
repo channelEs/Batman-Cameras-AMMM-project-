@@ -5,6 +5,7 @@ from problem.instance import Instance
 from batman_utils import BatmanUtils
 from Solvers.GreedeySolver import GreedySolver
 from Solvers.LocalSearch import LocalSearch
+from Solvers.GRASPSolver import GRASPSolver
 
 def prepare_data_set(data_set):
     data_set.P = list(map(int,data_set.P))
@@ -32,7 +33,7 @@ def prepare_data_set(data_set):
     return cam_models
 
 if __name__ == "__main__":
-    config_file = os.path.join("dat_files","config.dat")
+    config_file = os.path.join("config","config.dat")
     input_data = DATParser.parse(config_file)
     print(input_data.__dict__)
 
@@ -56,8 +57,8 @@ if __name__ == "__main__":
     if input_data.solver == "Greedy":
         solver = GreedySolver(global_utils=batman_utils, instance=instance, local_search=local_search)
         
-    # if input_data.solver == "GRASP":
-    #     solver = GRASPSolver(N=data_set.N, cam_models=cam_models, distance_matrix=data_set.M, local_search=local_search)
+    if input_data.solver == "GRASP":
+        solver = GRASPSolver(global_utils=batman_utils, instance=instance, local_search=local_search)
 
     sol, cost = solver.solve()
 
