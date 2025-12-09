@@ -1,6 +1,5 @@
 /*****************************************************************************
  * Modello ILP per il progetto "Batman - Monitoring the Streets"
- * Versione per Copia-Incolla Manuale
  *****************************************************************************/
 
 // --- PARAMETRI ---
